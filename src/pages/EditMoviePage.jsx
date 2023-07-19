@@ -64,7 +64,7 @@ export default function EditMoviePage() {
       return;
     }
     editMovie(id, formValue);
-    navigate(-1);
+    navigate("/");
 
     // setFormValue({
     //   title: "",
