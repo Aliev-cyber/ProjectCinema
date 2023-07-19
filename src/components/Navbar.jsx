@@ -21,12 +21,8 @@ const pages = [
     title: "New Movie",
     link: "/add",
   },
-  {
-    title: "Favorite",
-    link: "/favorite",
-  },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Logout"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

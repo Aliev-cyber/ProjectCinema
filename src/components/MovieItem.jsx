@@ -33,7 +33,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function MovieItem({ item }) {
-  const { deleteDish } = useMovieContext();
+  const { deleteMovie } = useMovieContext();
   const navigate = useNavigate();
   const [formValue, setFormValue] = React.useState({
     authors: "",
@@ -72,22 +72,19 @@ export default function MovieItem({ item }) {
               onClose={handleClose}
               MenuListProps={{
                 "aria-labelledby": "basic-button",
-              }}
-            >
+              }}>
               <MenuItem
                 component={Button}
                 endIcon={<DeleteIcon />}
                 sx={{ textTransform: "capitalize", color: "red" }}
-                onClick={() => deleteDish(item.id)}
-              >
+                onClick={() => deleteMovie(item.id)}>
                 Delete
               </MenuItem>
               <MenuItem
                 component={Button}
                 endIcon={<EditIcon />}
                 sx={{ textTransform: "capitalize", width: "100%" }}
-                onClick={() => navigate(`/edit/${item.id}`)}
-              >
+                onClick={() => navigate(`/edit/${item.id}`)}>
                 Edit
               </MenuItem>
             </Menu>
@@ -119,8 +116,7 @@ export default function MovieItem({ item }) {
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
-          aria-label="show more"
-        >
+          aria-label="show more">
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
