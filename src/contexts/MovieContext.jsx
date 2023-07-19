@@ -15,7 +15,8 @@ function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.movies:
       return { ...state, movies: action.payload };
-
+    case ACTIONS.movie:
+      return { ...state, movie: action.payload };
     default:
       return state;
   }
@@ -30,25 +31,43 @@ const MovieContext = ({ children }) => {
       console.log(e);
     }
   }
-  async function getMovie(){
-    try{
-        const {data} =  await axios.get(API)
-        dispatch({
-            type: ACTIONS.movies,
-            payload: data,
-        });
-    }catch(e){
-       console.log(e);
+  async function getMovie() {
+    try {
+      const { data } = await axios.get(API);
+      dispatch({
+        type: ACTIONS.movies,
+        payload: data,
+      });
+    } catch (e) {
+      console.log(e);
     }
-}
+  }
 
-
-
-
+  async function getOneMovie(id) {
+    try {
+      const { data } = await axios.get(`${API}/${id}`);
+      dispatch({
+        type: ACTIONS.movie,
+        payload: data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   async function deleteMovie(id) {
     try {
       await axios.delete(`${API}/${id}`);
+      getMovie();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function editMovie(id, newData) {
+    try {
+      await axios.patch(`${API}/${id}`, newData);
+      // getOneMovie();
     } catch (e) {
       console.log(e);
     }
@@ -56,12 +75,12 @@ const MovieContext = ({ children }) => {
 
   const value = {
     movies: state.movies,
+    movie: state.movie,
     addMovie,
-
     getMovie,
-
     deleteMovie,
-
+    editMovie,
+    getOneMovie,
   };
   return (
     <movieContext.Provider value={value}>{children}</movieContext.Provider>
