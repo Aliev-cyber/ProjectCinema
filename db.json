@@ -1,5 +1,5 @@
 {
-  "movie": [
+  "movies": [
     {
       "id": 1,
       "title": "The Hunger Games",
@@ -44,7 +44,7 @@
     },
     {
       "id": 6,
-      "title": "The Chronicles of Narnia",
+      "title": "The Chronicles ",
       "authors": "C.S. Lewis",
       "description": "Journeys to the end of the world, fantastic creatures, and epic battles between good and evil—what more could any reader ask for in one book? The book that has it all is The Lion, the Witch and the Wardrobe, written in 1949 by Clive Staples Lewis. But Lewis did not stop there. Six more books followed, and together they became known as The Chronicles of Narnia.For the past fifty years, The Chronicles of Narnia have transcended the fantasy genre to become part of the canon of classic literature. Each of the seven books is a masterpiece, drawing the reader into a land where magic meets reality, and the result is a fictional world whose scope has fascinated generations.This edition presents all seven books—unabridged—in one impressive volume. The books are presented here in chronlogical order, each chapter graced with an illustration by the original artist, Pauline Baynes. Deceptively simple and direct, The Chronicles of Narnia continue to captivate fans with adventures, characters, and truths that speak to readers of all ages, even fifty years after they were first published.",
       "rating": 5,
@@ -57,7 +57,7 @@
       "authors": "George Orwell",
       "description": "A farm is taken over by its overworked, mistreated animals. With flaming idealism and stirring slogans, they set out to create a paradise of progress, justice, and equality. Thus the stage is set for one of the most telling satiric fables ever penned –a razor-edged fairy tale for grown-ups that records the evolution from revolution against tyranny to a totalitarianism just as terrible.\nWhen Animal Farm was first published, Stalinist Russia was seen as its target. Today it is devastatingly clear that wherever and whenever freedom is attacked, under whatever banner, the cutting clarity and savage comedy of George Orwell’s masterpiece have a meaning and message still ferociously fresh.",
       "rating": 2,
-      "image_url": "https://images.gr-assets.com/books/1424037542l/7613.jpg"
+      "image": "https://images.gr-assets.com/books/1424037542l/7613.jpg"
     },
     {
       "id": 8,
@@ -65,23 +65,39 @@
       "authors": "Margaret Mitchell",
       "description": "Gone with the Wind is a novel written by Margaret Mitchell, first published in 1936. The story is set in Clayton County, Georgia, and Atlanta during the American Civil War and Reconstruction era. It depicts the struggles of young Scarlett O'Hara, the daughter of a well-to-do plantation owner, who must use every means at her disposal to claw her way out of the poverty she finds herself in after Sherman's March to the Sea. A historical novel, the story is a Bildungsroman or coming-of-age story, with the title taken from a poem written by Ernest Dowson.",
       "rating": 3,
-      "image_url": "https://images.gr-assets.com/books/1328025229l/18405.jpg"
+      "image": "https://images.gr-assets.com/books/1328025229l/18405.jpg"
     },
     {
       "id": 9,
-      "title": "J.R.R. Tolkien 4-Book Boxed Set: The Hobbit and The Lord of the Rings",
+      "title": "J.R.R. Tolkien 4-Book",
       "authors": "J.R.R. Tolkien",
       "description": "This four-volume, boxed set contains J.R.R. Tolkien's epic masterworks The Hobbit and the three volumes of The Lord of the Rings (The Fellowship of the Ring, The Two Towers, and The Return of the King).",
       "rating": 5,
-      "image_url": "https://images.gr-assets.com/books/1346072396l/30.jpg"
+      "image": "https://images.gr-assets.com/books/1346072396l/30.jpg"
     },
     {
       "id": 10,
-      "title": "The Fault in Our Stars",
+      "title": "The Fault ",
       "authors": "John Green",
       "description": "Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustu s Waters suddenly appears at Cancer Kid Support Group, Hazel's story is about to be completely rewritten.Insightful, bold, irreverent, and raw, The Fault in Our Stars is award-winning author John Green's most ambitious and heartbreaking work yet, brilliantly exploring the funny, thrilling, and tragic business of being alive and in love.",
       "rating": 4.24,
-      "image_url": "https://images.gr-assets.com/books/1360206420l/11870085.jpg"
+      "image": "https://images.gr-assets.com/books/1360206420l/11870085.jpg"
+    },
+    {
+      "id": 13,
+      "title": "The Giving Tree",
+      "authors": "Shel Silverstein",
+      "description": "\"Once there was a tree...and she loved a little boy.\"So begins a story of unforgettable perception, beautifully written and illustrated by the gifted and versatile Shel Silverstein.Every day the boy would come to the tree to eat her apples, swing from her branches, or slide down her trunk...and the tree was happy. But as the boy grew older he began to want more from the tree, and the tree gave and gave and gave.This is a tender story, touched with sadness, aglow with consolation. Shel Silverstein has created a moving parable for readers of all ages that offers an affecting interpretation of the gift of giving and a serene acceptance of another's capacity to love in return.",
+      "rating": 4.37,
+      "image": "https://images.gr-assets.com/books/1174210942l/370493.jpg"
+    },
+    {
+      "id": 16,
+      "title": "Memoirs of a Geisha",
+      "authors": "Arthur Golden",
+      "description": "A literary sensation and runaway bestseller, this brilliant debut novel presents with seamless authenticity and exquisite lyricism the true confessions of one of Japan's most celebrated geisha.In Memoirs of a Geisha, we enter a world where appearances are paramount; where a girl's virginity is auctioned to the highest bidder; where women are trained to beguile the most powerful men; and where love is scorned as illusion. It is a unique and triumphant work of fiction - at once romantic, erotic, suspenseful - and completely unforgettable.",
+      "rating": 4.09,
+      "image": "https://images.gr-assets.com/books/1388367666l/930.jpg"
     }
   ]
 }

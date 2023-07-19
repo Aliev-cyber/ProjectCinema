@@ -7,9 +7,9 @@ import AddMoviePage from "../pages/AddMoviePage";
 const MainRoutes = () => {
   return (
     <Routes>
-      <Route element={<MainLayouts />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/add" element={<AddMoviePage />} />
+      <Route element={<MainLayouts/>}>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/add" element={<AddMoviePage/>} />
       </Route>
     </Routes>
   );

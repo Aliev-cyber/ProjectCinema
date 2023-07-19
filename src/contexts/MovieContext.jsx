@@ -30,9 +30,24 @@ const MovieContext = ({ children }) => {
       console.log(e);
     }
   }
+  async function getMovie(){
+    try{
+        const {data} =  await axios.get(API)
+        dispatch({
+            type: ACTIONS.movies,
+            payload: data,
+        });
+    }catch(e){
+       console.log(e);
+    }
+}
+
+
+
   const value = {
-    movie: state.movie,
+    movies: state.movies,
     addMovie,
+    getMovie,
   };
   return (
     <movieContext.Provider value={value}>{children}</movieContext.Provider>
