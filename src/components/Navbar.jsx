@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useEffect } from "react";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,12 +10,13 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import { Link } from "react-router-dom";
+import { useMovieContext } from "../contexts/MovieContext";
+import { TextField, Slider, Button } from "@mui/material";
 
 const pages = [
   { title: "Home", link: "/" },
@@ -42,7 +45,23 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const { getMovie, movies, search, setSearch, setRating, rating } =
+    useMovieContext();
+  console.log(movies);
 
+  useEffect(() => {
+    getMovie();
+  }, [search, rating]);
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+  const handleRatingChange = (event) => {
+    setRating(event.target.value);
+  };
+  const handleResetRating = () => {
+    setRating(null);
+  };
   return (
     <AppBar position="static" sx={{ background: "black" }}>
       <Container maxWidth="xl">
@@ -63,7 +82,8 @@ function ResponsiveAppBar() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
-            }}>
+            }}
+          >
             CIMENA
           </Typography>
 
@@ -74,7 +94,8 @@ function ResponsiveAppBar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit">
+              color="inherit"
+            >
               <MenuIcon />
             </IconButton>
             <Menu
@@ -93,7 +114,8 @@ function ResponsiveAppBar() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
-              }}>
+              }}
+            >
               {pages.map((page) => (
                 <MenuItem key={page.title} onClick={handleCloseNavMenu}>
                   <Link to={page.link}>
@@ -103,6 +125,7 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+
           <TheaterComedyIcon
             sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
           />
@@ -120,7 +143,8 @@ function ResponsiveAppBar() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
-            }}>
+            }}
+          >
             CINEMA
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -129,13 +153,48 @@ function ResponsiveAppBar() {
                 <Button
                   key={page.title}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}>
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
                   {page.title}
                 </Button>
               </Link>
             ))}
           </Box>
-
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Slider
+              value={rating}
+              onChange={handleRatingChange}
+              min={1}
+              max={5}
+              step={1}
+              marks
+              valueLabelDisplay="auto"
+              sx={{ margin: "3rem", width: "10vw" }}
+            />
+            <Button
+              variant="outlined"
+              onClick={handleResetRating}
+              sx={{ margin: "3rem", width: "10vw" }}
+            >
+              All Movies
+            </Button>
+          </Box>
+          <TextField
+            label="Search Movie"
+            variant="outlined"
+            value={search}
+            onChange={handleSearchChange}
+            sx={{
+              margin: "3rem",
+              width: "100",
+              display: "block",
+              "> .MuiOutlinedInput-root": {
+                display: "block",
+                width: "20rem",
+                backgroundColor: "white",
+              },
+            }}
+          />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -159,7 +218,8 @@ function ResponsiveAppBar() {
                 horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}>
+              onClose={handleCloseUserMenu}
+            >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
