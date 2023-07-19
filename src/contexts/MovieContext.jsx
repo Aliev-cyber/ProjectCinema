@@ -44,10 +44,24 @@ const MovieContext = ({ children }) => {
 
 
 
+
+
+  async function deleteMovie(id) {
+    try {
+      await axios.delete(`${API}/${id}`);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const value = {
     movies: state.movies,
     addMovie,
+
     getMovie,
+
+    deleteMovie,
+
   };
   return (
     <movieContext.Provider value={value}>{children}</movieContext.Provider>
