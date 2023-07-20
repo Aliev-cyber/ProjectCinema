@@ -4,6 +4,7 @@ import { Box, Pagination } from "@mui/material";
 import { useMovieContext } from "../contexts/MovieContext";
 import { useSearchParams } from "react-router-dom";
 import { LIMIT } from "../utils/consts";
+import Filter from "../components/Filter";
 
 const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,6 +24,7 @@ const HomePage = () => {
   }, [page]);
   return (
     <div>
+      <Filter />
       <MovieList />
       <Box sx={{ maxWidth: "max-content", margin: "30px auto" }}>
         <Pagination
