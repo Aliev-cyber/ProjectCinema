@@ -102,6 +102,7 @@ export default function MovieItem({ item }) {
       <CardContent>
         <Typography variant="h6">{item.authors}</Typography>
         <Typography variant="body2" color="text.secondary">
+          <Typography paragraph>{item.genres}</Typography>
           <Rating name="simple-controlled" value={formValue.rating} />
         </Typography>
       </CardContent>
