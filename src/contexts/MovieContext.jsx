@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useReducer } from "react";
-import { ACTIONS, API } from "../utils/consts";
+import React, { createContext, useContext, useReducer, useState } from "react";
+import { ACTIONS, API, LIMIT } from "../utils/consts";
 import axios from "axios";
+import { useSearchParams } from "react-router-dom";
 
 const movieContext = createContext();
 
@@ -12,6 +13,7 @@ const init = {
   movie: {},
   search: "",
   rating: null,
+  pageTotalCount: 1,
 };
 
 function reducer(state, action) {
@@ -24,13 +26,17 @@ function reducer(state, action) {
       return { ...state, rating: action.payload };
     case ACTIONS.search:
       return { ...state, search: action.payload };
+    case ACTIONS.pageTotalCount:
+      return { ...state, pageTotalCount: action.payload };
     default:
       return state;
   }
 }
 
 const MovieContext = ({ children }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [state, dispatch] = useReducer(reducer, init);
+  const [page, setPage] = useState(+searchParams.get("_page") || 1);
   function setSearch(newSearch) {
     dispatch({ type: ACTIONS.search, payload: newSearch });
   }
@@ -46,11 +52,20 @@ const MovieContext = ({ children }) => {
   }
   async function getMovie() {
     try {
-      const { data } = await axios.get(API, {
-        params: {
-          title_like: encodeURIComponent(state.search),
-          rating_like: state.rating,
-        },
+      const { data, headers } = await axios.get(
+        `${API}${window.location.search}`,
+        {
+          params: {
+            title_like: state.search,
+            rating_like: state.rating,
+          },
+        }
+      );
+      console.log(data);
+      const totalCount = Math.ceil(headers["x-total-count"] / LIMIT);
+      dispatch({
+        type: ACTIONS.pageTotalCount,
+        payload: totalCount,
       });
       dispatch({ type: ACTIONS.movies, payload: data });
     } catch (e) {
@@ -61,7 +76,7 @@ const MovieContext = ({ children }) => {
   async function deleteMovie(id) {
     try {
       await axios.delete(`${API}/${id}`);
-      getMovie()
+      getMovie();
     } catch (e) {
       console.log(e);
     }
@@ -80,7 +95,7 @@ const MovieContext = ({ children }) => {
   async function editMovie(id, newData) {
     try {
       await axios.patch(`${API}/${id}`, newData);
-      getMovie()
+      getMovie();
     } catch (e) {
       console.log(e);
     }
@@ -91,6 +106,7 @@ const MovieContext = ({ children }) => {
     movie: state.movie,
     search: state.search,
     rating: state.rating,
+    pageTotalCount: state.pageTotalCount,
     addMovie,
     getMovie,
     deleteMovie,
@@ -99,6 +115,8 @@ const MovieContext = ({ children }) => {
     setRating,
     editMovie,
     getOneMovie,
+    page,
+    setPage,
   };
   return (
     <movieContext.Provider value={value}>{children}</movieContext.Provider>
